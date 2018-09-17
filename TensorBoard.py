@@ -11,7 +11,7 @@ class TensorBoard(object):
 
     def __init__(self,arg):
         self.tbc = arg
-
+        print("TensorBoard Initialized")
 
     def log_dict(self, epoch, logs):
         """
