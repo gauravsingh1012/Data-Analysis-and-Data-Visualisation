@@ -1,6 +1,6 @@
 import datetime
 import tensorflow as tf
-
+from tensorboardcolab import *
 
 class TensorBoard(object):
     """
@@ -9,8 +9,9 @@ class TensorBoard(object):
     Zipline algorithm.
     """
 
-    def __init__(self,arg):
-        self.tbc = arg
+    def __init__(self):
+
+        self.tbc = TensorBoardColab()
         print("TensorBoard Initialized")
 
     def log_dict(self, epoch, logs):
@@ -26,7 +27,7 @@ class TensorBoard(object):
             summary_value.simple_value = value
             summary_value.tag = name
             self.tbc.writer.add_summary(summary, global_step=epoch)
-        self.writer.flush()
+        self.tbc.writer.flush()
 
     def log_algo(self, algo, epoch=None, other_logs={}):
         """
