@@ -1,6 +1,8 @@
 import datetime
 import tensorflow as tf
-
+from tensorboardcolab import *
+import shutil
+import os
 #PUT THIS IN A SEPARATE CELL
 
 class TensorBoard(object):
@@ -10,10 +12,11 @@ class TensorBoard(object):
     Zipline algorithm.
     """
 
-    def __init__(self, tbc):
-        self.writer = tbc.get_writer()
+    def __init__(self):
+        tbc = TensorBoardColab()
         shutil.rmtree('./Graph',ignore_errors=True)
         os.mkdir('./Graph')
+        self.writer = tbc.get_writer()
         print("TensorBoard Initialized")
 
     def log_dict(self, epoch, logs):
