@@ -13,8 +13,8 @@ class TensorBoard(object):
     """
 
     def __init__(self):
-
-        self.tbc = TensorBoardColab()
+        tbc = TensorBoardColab()
+        self.writer = tbc.get_writer()
         shutil.rmtree('./Graph',ignore_errors=True)
         os.mkdir('./Graph')
         print("TensorBoard Initialized")
@@ -31,8 +31,8 @@ class TensorBoard(object):
             summary_value = summary.value.add()
             summary_value.simple_value = value
             summary_value.tag = name
-            self.tbc.writer.add_summary(summary, global_step=epoch)
-        self.tbc.writer.flush()
+            self.writer.add_summary(summary, global_step=epoch)
+        self.writer.flush()
 
     def log_algo(self, algo, epoch=None, other_logs={}):
         """
