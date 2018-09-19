@@ -1,6 +1,9 @@
 import datetime
 import tensorflow as tf
 from tensorboardcolab import *
+import shutil
+import os
+#PUT THIS IN A SEPARATE CELL
 
 class TensorBoard(object):
     """
@@ -12,6 +15,8 @@ class TensorBoard(object):
     def __init__(self):
 
         self.tbc = TensorBoardColab()
+        shutil.rmtree('./Graph',ignore_errors=True)
+        os.mkdir('./Graph')
         print("TensorBoard Initialized")
 
     def log_dict(self, epoch, logs):
