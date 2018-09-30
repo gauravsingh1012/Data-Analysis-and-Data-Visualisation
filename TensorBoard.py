@@ -26,14 +26,16 @@ class TensorBoard(object):
             epoch: An integer representing time.
             logs: A dict containing what we want to log to TensorBoard.
         """
-        for name, value in logs.items():
-            summary = tf.Summary()
-            summary_value = summary.value.add()
-            summary_value.simple_value = value
-            summary_value.tag = name
-            print(name,value)
-            self.writer.add_summary(summary, global_step=epoch)
-        self.writer.flush()
+        graph = tf.Graph()
+        with tf.Session(graph=graph) as sess:
+            for name, value in logs.items():
+                summary = tf.Summary()
+                summary_value = summary.value.add()
+                summary_value.simple_value = value
+                summary_value.tag = name
+                print(name,value)
+                self.writer.add_summary(summary, global_step=epoch)
+            self.writer.flush()
 
     def log_algo(self, algo, epoch=None, other_logs={}):
         """
