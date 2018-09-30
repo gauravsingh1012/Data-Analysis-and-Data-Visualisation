@@ -26,8 +26,10 @@ class TensorBoard(object):
             epoch: An integer representing time.
             logs: A dict containing what we want to log to TensorBoard.
         """
+
         graph = tf.Graph()
         with tf.Session(graph=graph) as sess:
+            i = 0
             for name, value in logs.items():
                 #summary = tf.Summary()
                 #summary_value = summary.value.add()
@@ -36,8 +38,9 @@ class TensorBoard(object):
                 tf.summary.scalar(name, value)
                 tf_summary = tf.summary.merge_all()
                 summary = tf_summary.eval()
-                print(name,value)
+                if i % 1000 >= 0 & i % 100 <= 10: print(name,value)
                 self.writer.add_summary(summary, global_step=epoch)
+                i = i + 1
             self.writer.flush()
 
     def log_algo(self, algo, epoch=None, other_logs={}):
