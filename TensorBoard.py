@@ -29,10 +29,11 @@ class TensorBoard(object):
         graph = tf.Graph()
         with tf.Session(graph=graph) as sess:
             for name, value in logs.items():
-                summary = tf.Summary()
-                summary_value = summary.value.add()
-                summary_value.simple_value = value
-                summary_value.tag = name
+                #summary = tf.Summary()
+                #summary_value = summary.value.add()
+                #summary_value.simple_value = value
+                #summary_value.tag = name
+                tf.summary.scalar(name, value)
                 print(name,value)
                 self.writer.add_summary(summary, global_step=epoch)
             self.writer.flush()
