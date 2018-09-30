@@ -38,7 +38,7 @@ class TensorBoard(object):
                 tf.summary.scalar(name, value)
                 tf_summary = tf.summary.merge_all()
                 summary = tf_summary.eval()
-                if i % 1000 >= 0 & i % 100 <= 10: print(name,value)
+                if i % 10000 == 0: print(name,value)
                 self.writer.add_summary(summary, global_step=epoch)
                 i = i + 1
             self.writer.flush()
