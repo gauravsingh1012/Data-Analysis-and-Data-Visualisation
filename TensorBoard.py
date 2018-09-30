@@ -60,16 +60,16 @@ class TensorBoard(object):
         logs = {}
 
         # add portfolio related things
-        logs['portfolio value'] = algo.portfolio.portfolio_value
-        logs['portfolio pnl'] = algo.portfolio.pnl
-        logs['portfolio return'] = algo.portfolio.returns
-        logs['portfolio cash'] = algo.portfolio.cash
-        logs['portfolio capital used'] = algo.portfolio.capital_used
-        logs['portfolio positions exposure'] = algo.portfolio.positions_exposure
-        logs['portfolio positions value'] = algo.portfolio.positions_value
-        logs['number of orders'] = len(algo.blotter.orders)
-        logs['number of open orders'] = len(algo.blotter.open_orders)
-        logs['number of open positions'] = len(algo.portfolio.positions)
+        logs['portfolio_value'] = algo.portfolio.portfolio_value
+        logs['portfolio_pnl'] = algo.portfolio.pnl
+        logs['portfolio_return'] = algo.portfolio.returns
+        logs['portfolio_cash'] = algo.portfolio.cash
+        logs['portfolio_capital_used'] = algo.portfolio.capital_used
+        logs['portfolio_positions_exposure'] = algo.portfolio.positions_exposure
+        logs['portfolio_positions_value'] = algo.portfolio.positions_value
+        logs['number_of_orders'] = len(algo.blotter.orders)
+        logs['number_of_open_orders'] = len(algo.blotter.open_orders)
+        logs['number_of_open_positions'] = len(algo.portfolio.positions)
 
         # add recorded variables from `zipline.algorithm.record` method
         for name, value in algo.recorded_vars.items():
