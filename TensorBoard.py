@@ -34,6 +34,7 @@ class TensorBoard(object):
                 #summary_value.simple_value = value
                 #summary_value.tag = name
                 tf.summary.scalar(name, value)
+                summary = tf.summary.merge_all()
                 print(name,value)
                 self.writer.add_summary(summary, global_step=epoch)
             self.writer.flush()
