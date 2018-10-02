@@ -29,7 +29,6 @@ class TensorBoard(object):
 
         graph = tf.Graph()
         with tf.Session(graph=graph) as sess:
-            i = 0
             for name, value in logs.items():
                 #summary = tf.Summary()
                 #summary_value = summary.value.add()
@@ -38,10 +37,7 @@ class TensorBoard(object):
                 tf.summary.scalar(name, value)
                 tf_summary = tf.summary.merge_all()
                 summary = tf_summary.eval()
-                if name == "number_of_orders" & i % 10000000 == 0:
-                    print(name,value)
                 self.writer.add_summary(summary, global_step=epoch)
-                i = i + 1
             self.writer.flush()
 
     def log_algo(self, algo, epoch=None, other_logs={}):
